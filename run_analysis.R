@@ -2,7 +2,8 @@
 ## Getting and cleaning data - week 4 assignment
 ##
 
-#rm(list=ls())
+rm(list=ls())
+library(reshape2)
 
 import_and_merge <- function (FeatFname,ActFname,SubjFname,nrows=10) 
 {
@@ -83,6 +84,4 @@ merged_set_meanstd_flat <- melt(merged_set_meanstd,id.vars = id_vars,measure.var
 
 agg_set <- aggregate(value ~ variable + activity_name + subject_id, merged_set_meanstd_flat, mean)
 
-#agg_set
-
-write.csv(agg_set,"result_set.csv")
+write.table(agg_set,"result_set.csv",row.names =FALSE)
